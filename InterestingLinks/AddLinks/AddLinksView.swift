@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddLinksView: View {
+    
+    @StateObject var viewModel: AddLinksViewModel
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -39,5 +42,5 @@ struct AddLinksView: View {
 
 
 #Preview {
-    AddLinksView()
+    AddLinksView(viewModel: AddLinksViewModel())
 }
