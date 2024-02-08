@@ -12,11 +12,14 @@
 		1895DA782B74B753009D4A1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895DA772B74B753009D4A1F /* Assets.xcassets */; };
 		1895DA7B2B74B753009D4A1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895DA7A2B74B753009D4A1F /* Preview Assets.xcassets */; };
 		1895DA832B74BF8D009D4A1F /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA822B74BF8D009D4A1F /* IntroductionView.swift */; };
-		1895DA862B74CB12009D4A1F /* IntroductionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA852B74CB12009D4A1F /* IntroductionButtonView.swift */; };
 		1895DA882B74CBB1009D4A1F /* TextIntraductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA872B74CBB1009D4A1F /* TextIntraductionView.swift */; };
 		1895DA8A2B74CD6B009D4A1F /* IntroductionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA892B74CD6B009D4A1F /* IntroductionViewModel.swift */; };
 		1895DA8D2B74D8BE009D4A1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA8C2B74D8BE009D4A1F /* AppDelegate.swift */; };
 		1895DA8F2B74D930009D4A1F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA8E2B74D930009D4A1F /* AppCoordinator.swift */; };
+		1895DA922B74DF25009D4A1F /* AddLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA912B74DF25009D4A1F /* AddLinksView.swift */; };
+		1895DA952B74E2EA009D4A1F /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA942B74E2EA009D4A1F /* TitleView.swift */; };
+		1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */; };
+		1895DA9A2B74F032009D4A1F /* TextAddLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA992B74F032009D4A1F /* TextAddLinksView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +29,14 @@
 		1895DA772B74B753009D4A1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1895DA7A2B74B753009D4A1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1895DA822B74BF8D009D4A1F /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
-		1895DA852B74CB12009D4A1F /* IntroductionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionButtonView.swift; sourceTree = "<group>"; };
 		1895DA872B74CBB1009D4A1F /* TextIntraductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextIntraductionView.swift; sourceTree = "<group>"; };
 		1895DA892B74CD6B009D4A1F /* IntroductionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionViewModel.swift; sourceTree = "<group>"; };
 		1895DA8C2B74D8BE009D4A1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1895DA8E2B74D930009D4A1F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		1895DA912B74DF25009D4A1F /* AddLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinksView.swift; sourceTree = "<group>"; };
+		1895DA942B74E2EA009D4A1F /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
+		1895DA992B74F032009D4A1F /* TextAddLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAddLinksView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +69,10 @@
 		1895DA722B74B750009D4A1F /* InterestingLinks */ = {
 			isa = PBXGroup;
 			children = (
+				1895DA962B74ECB0009D4A1F /* Design */,
 				1895DA8B2B74D896009D4A1F /* Application */,
 				1895DA812B74BD6E009D4A1F /* IntroductoryPage */,
+				1895DA902B74DEC8009D4A1F /* AddLinks */,
 				1895DA732B74B750009D4A1F /* InterestingLinksApp.swift */,
 				1895DA752B74B750009D4A1F /* ContentView.swift */,
 				1895DA772B74B753009D4A1F /* Assets.xcassets */,
@@ -94,7 +102,6 @@
 		1895DA842B74CADE009D4A1F /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				1895DA852B74CB12009D4A1F /* IntroductionButtonView.swift */,
 				1895DA872B74CBB1009D4A1F /* TextIntraductionView.swift */,
 			);
 			path = Additions;
@@ -107,6 +114,32 @@
 				1895DA8E2B74D930009D4A1F /* AppCoordinator.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		1895DA902B74DEC8009D4A1F /* AddLinks */ = {
+			isa = PBXGroup;
+			children = (
+				1895DA932B74E2CE009D4A1F /* Additons  */,
+				1895DA912B74DF25009D4A1F /* AddLinksView.swift */,
+			);
+			path = AddLinks;
+			sourceTree = "<group>";
+		};
+		1895DA932B74E2CE009D4A1F /* Additons  */ = {
+			isa = PBXGroup;
+			children = (
+				1895DA942B74E2EA009D4A1F /* TitleView.swift */,
+				1895DA992B74F032009D4A1F /* TextAddLinksView.swift */,
+			);
+			path = "Additons ";
+			sourceTree = "<group>";
+		};
+		1895DA962B74ECB0009D4A1F /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */,
+			);
+			path = Design;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,14 +212,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1895DA9A2B74F032009D4A1F /* TextAddLinksView.swift in Sources */,
 				1895DA882B74CBB1009D4A1F /* TextIntraductionView.swift in Sources */,
-				1895DA862B74CB12009D4A1F /* IntroductionButtonView.swift in Sources */,
 				1895DA8A2B74CD6B009D4A1F /* IntroductionViewModel.swift in Sources */,
 				1895DA762B74B750009D4A1F /* ContentView.swift in Sources */,
 				1895DA8F2B74D930009D4A1F /* AppCoordinator.swift in Sources */,
+				1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */,
+				1895DA922B74DF25009D4A1F /* AddLinksView.swift in Sources */,
 				1895DA8D2B74D8BE009D4A1F /* AppDelegate.swift in Sources */,
 				1895DA832B74BF8D009D4A1F /* IntroductionView.swift in Sources */,
 				1895DA742B74B750009D4A1F /* InterestingLinksApp.swift in Sources */,
+				1895DA952B74E2EA009D4A1F /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

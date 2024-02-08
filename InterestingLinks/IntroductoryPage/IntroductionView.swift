@@ -23,7 +23,12 @@ struct IntroductionView: View {
                 Spacer()
                 TextIntraductionView()
                 
-                IntroductionButtonView(viewModel: viewModel)
+                Button(action: {
+                    viewModel.onEvent?(.next)
+                }) {
+                    Text("Let’s start")
+                }
+                .buttonStyle(CustomButtonStyle(backgroundColor: .white, textColor: .black))
             }
             .padding(.bottom)
         }
