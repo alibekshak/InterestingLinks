@@ -54,13 +54,7 @@ class AppCoordinator {
     private func addLinks() -> UIViewController {
         let viewModel = AddLinksViewModel()
         let writeDownViewModel = WriteDownInfoViewModel()
-        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel, writeDownViewModel: writeDownViewModel).task{
-            do {
-                try await writeDownViewModel.load()
-            } catch {
-                print("\(error)")
-            }
-        })
+        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel, writeDownViewModel: writeDownViewModel))
         
         viewModel.onEvent = { [weak controller, weak self] event in
             guard let self = self else { return }
@@ -69,28 +63,37 @@ class AppCoordinator {
                 controller?.present(writeDownInfo(writeDownViewModel: writeDownViewModel), animated: true)
             }
         }
+        
+        Task {
+               do {
+                   try await writeDownViewModel.load()
+               } catch {
+                   print("\(error)")
+               }
+           }
+        
         controller.modalPresentationStyle = .fullScreen
         
         return controller
     }
     
     private func writeDownInfo(writeDownViewModel: WriteDownInfoViewModel) -> UIViewController {
-//        let viewModel = WriteDownInfoViewModel()
         let controller = UIHostingController(rootView: WriteDownInfoView(viewModel: writeDownViewModel))
         
-//        viewModel.onEvent = { [weak controller, weak self] event in
-//            guard let self = self else { return }
-//            switch event {
-//            case .save:
-//                Task {
-//                    do {
-//                        try await viewModel.save(links: viewModel.links)
-//                    } catch {
-//                        print("\(error)")
-//                    }
-//                }
-//            }
-//        }
+        writeDownViewModel.onEvent = { [weak controller, weak self] event in
+            guard let self = self else { return }
+            switch event {
+            case .save:
+                Task {
+                    do {
+                        try await writeDownViewModel.save()
+                    } catch {
+                        print("\(error)")
+                    }
+                }
+                controller?.dismiss(animated: true)
+            }
+        }
         
         controller.modalPresentationStyle = .formSheet
         

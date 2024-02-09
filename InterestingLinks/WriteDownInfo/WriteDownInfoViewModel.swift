@@ -42,14 +42,24 @@ class WriteDownInfoViewModel: ObservableObject {
     }
     
     func save() async throws {
-        let newLink = Links(name: titleLink, link: link)
-            links.append(newLink)
-            
-            let task = Task {
-                let data = try JSONEncoder().encode(links)
-                let outfile = try Self.fileURL()
-                try data.write(to: outfile)
-            }
-            _ = try await task.value
+        guard !titleLink.isEmpty, !link.isEmpty else {
+
+            return
         }
+        
+        let newLink = Links(name: titleLink, link: link)
+        links.append(newLink)
+        
+        let task = Task {
+            let data = try JSONEncoder().encode(links)
+            let outfile = try Self.fileURL()
+            try data.write(to: outfile)
+        }
+        _ = try await task.value
+    }
+
+    
+    func removeLink(at index: Int) {
+        links.remove(at: index)
+    }
 }

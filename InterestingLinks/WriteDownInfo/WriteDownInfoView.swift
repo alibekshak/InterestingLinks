@@ -19,13 +19,7 @@ struct WriteDownInfoView: View {
             webLink
             
             Button(action: {
-                Task {
-                    do {
-                        try await viewModel.save()
-                    } catch {
-                        print("\(error)")
-                    }
-                }
+                viewModel.onEvent?(.save)
             }) {
                 Text("Save")
             }
