@@ -12,7 +12,7 @@ import SwiftUI
 class AppCoordinator {
     var rootController: UIViewController!
     var window: UIWindow
-
+    
     init(window: UIWindow) {
         self.window = window
     }
@@ -44,7 +44,7 @@ class AppCoordinator {
         navBarAppearance.shadowImage = UIImage()
         navBarAppearance.shadowColor = .clear
         navBarAppearance.backgroundColor = .black
-
+        
         //Configure additional customizations here
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
@@ -65,12 +65,12 @@ class AppCoordinator {
         }
         
         Task {
-               do {
-                   try await writeDownViewModel.load()
-               } catch {
-                   print("\(error)")
-               }
-           }
+            do {
+                try await writeDownViewModel.load()
+            } catch {
+                print("\(error)")
+            }
+        }
         
         controller.modalPresentationStyle = .fullScreen
         
@@ -95,7 +95,11 @@ class AppCoordinator {
             }
         }
         
-        controller.modalPresentationStyle = .formSheet
+        controller.modalPresentationStyle = .pageSheet
+        
+        if let sheet = controller.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
         
         return controller
     }

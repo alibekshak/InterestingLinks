@@ -24,7 +24,7 @@ struct AddLinksView: View {
             Button(action: {
                 viewModel.onEvent?(.openSheet)
             }) {
-                Text("Let’s start surfing the web")
+                Text("Add Link")
             }
             .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
             .padding(.bottom)

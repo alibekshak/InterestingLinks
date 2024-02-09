@@ -14,9 +14,15 @@ struct WriteDownInfoView: View {
     var body: some View {
         VStack(spacing: 16) {
             
+            Text("Save your links")
+                .font(.largeTitle)
+                .bold()
+            
+            Spacer()
             linkTitle
             
             webLink
+            Spacer()
             
             Button(action: {
                 viewModel.onEvent?(.save)

@@ -71,11 +71,11 @@
 		1895DA722B74B750009D4A1F /* InterestingLinks */ = {
 			isa = PBXGroup;
 			children = (
-				1895DADD2B75D9F5009D4A1F /* WriteDownInfo */,
-				1895DA962B74ECB0009D4A1F /* Design */,
 				1895DA8B2B74D896009D4A1F /* Application */,
+				1895DADD2B75D9F5009D4A1F /* WriteDownInfo */,
 				1895DA812B74BD6E009D4A1F /* IntroductoryPage */,
 				1895DA902B74DEC8009D4A1F /* AddLinks */,
+				1895DA962B74ECB0009D4A1F /* Design */,
 				1895DAD72B75C8A7009D4A1F /* Model */,
 				1895DA772B74B753009D4A1F /* Assets.xcassets */,
 				1895DA792B74B753009D4A1F /* Preview Content */,
