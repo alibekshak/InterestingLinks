@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1895DA742B74B750009D4A1F /* InterestingLinksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA732B74B750009D4A1F /* InterestingLinksApp.swift */; };
 		1895DA782B74B753009D4A1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895DA772B74B753009D4A1F /* Assets.xcassets */; };
 		1895DA7B2B74B753009D4A1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895DA7A2B74B753009D4A1F /* Preview Assets.xcassets */; };
 		1895DA832B74BF8D009D4A1F /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA822B74BF8D009D4A1F /* IntroductionView.swift */; };
@@ -20,11 +19,15 @@
 		1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */; };
 		1895DA9A2B74F032009D4A1F /* TextAddLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA992B74F032009D4A1F /* TextAddLinksView.swift */; };
 		1895DA9E2B750207009D4A1F /* AddLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA9D2B750207009D4A1F /* AddLinksViewModel.swift */; };
+		1895DAD62B75C881009D4A1F /* ListOfLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAD52B75C881009D4A1F /* ListOfLinksView.swift */; };
+		1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAD82B75C8D2009D4A1F /* Links.swift */; };
+		1895DADC2B75CF29009D4A1F /* ListOfLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DADB2B75CF29009D4A1F /* ListOfLinksViewModel.swift */; };
+		1895DAE02B75DAD3009D4A1F /* WriteDownInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */; };
+		1895DAE22B75E2D3009D4A1F /* WriteDownInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAE12B75E2D3009D4A1F /* WriteDownInfoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1895DA702B74B750009D4A1F /* InterestingLinks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterestingLinks.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1895DA732B74B750009D4A1F /* InterestingLinksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingLinksApp.swift; sourceTree = "<group>"; };
 		1895DA772B74B753009D4A1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1895DA7A2B74B753009D4A1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1895DA822B74BF8D009D4A1F /* IntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
@@ -37,6 +40,11 @@
 		1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		1895DA992B74F032009D4A1F /* TextAddLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAddLinksView.swift; sourceTree = "<group>"; };
 		1895DA9D2B750207009D4A1F /* AddLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinksViewModel.swift; sourceTree = "<group>"; };
+		1895DAD52B75C881009D4A1F /* ListOfLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfLinksView.swift; sourceTree = "<group>"; };
+		1895DAD82B75C8D2009D4A1F /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
+		1895DADB2B75CF29009D4A1F /* ListOfLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfLinksViewModel.swift; sourceTree = "<group>"; };
+		1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDownInfoView.swift; sourceTree = "<group>"; };
+		1895DAE12B75E2D3009D4A1F /* WriteDownInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDownInfoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +77,13 @@
 		1895DA722B74B750009D4A1F /* InterestingLinks */ = {
 			isa = PBXGroup;
 			children = (
+				1895DADD2B75D9F5009D4A1F /* WriteDownInfo */,
+				1895DADA2B75CEE6009D4A1F /* ListOfLinks */,
 				1895DA962B74ECB0009D4A1F /* Design */,
 				1895DA8B2B74D896009D4A1F /* Application */,
 				1895DA812B74BD6E009D4A1F /* IntroductoryPage */,
 				1895DA902B74DEC8009D4A1F /* AddLinks */,
+				1895DAD72B75C8A7009D4A1F /* Model */,
 				1895DA772B74B753009D4A1F /* Assets.xcassets */,
 				1895DA792B74B753009D4A1F /* Preview Content */,
 			);
@@ -110,7 +121,6 @@
 			children = (
 				1895DA8C2B74D8BE009D4A1F /* AppDelegate.swift */,
 				1895DA8E2B74D930009D4A1F /* AppCoordinator.swift */,
-				1895DA732B74B750009D4A1F /* InterestingLinksApp.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -140,6 +150,32 @@
 				1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */,
 			);
 			path = Design;
+			sourceTree = "<group>";
+		};
+		1895DAD72B75C8A7009D4A1F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1895DAD82B75C8D2009D4A1F /* Links.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1895DADA2B75CEE6009D4A1F /* ListOfLinks */ = {
+			isa = PBXGroup;
+			children = (
+				1895DAD52B75C881009D4A1F /* ListOfLinksView.swift */,
+				1895DADB2B75CF29009D4A1F /* ListOfLinksViewModel.swift */,
+			);
+			path = ListOfLinks;
+			sourceTree = "<group>";
+		};
+		1895DADD2B75D9F5009D4A1F /* WriteDownInfo */ = {
+			isa = PBXGroup;
+			children = (
+				1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */,
+				1895DAE12B75E2D3009D4A1F /* WriteDownInfoViewModel.swift */,
+			);
+			path = WriteDownInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,11 +253,15 @@
 				1895DA8A2B74CD6B009D4A1F /* IntroductionViewModel.swift in Sources */,
 				1895DA9E2B750207009D4A1F /* AddLinksViewModel.swift in Sources */,
 				1895DA8F2B74D930009D4A1F /* AppCoordinator.swift in Sources */,
+				1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */,
+				1895DAD62B75C881009D4A1F /* ListOfLinksView.swift in Sources */,
+				1895DADC2B75CF29009D4A1F /* ListOfLinksViewModel.swift in Sources */,
 				1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */,
 				1895DA922B74DF25009D4A1F /* AddLinksView.swift in Sources */,
 				1895DA8D2B74D8BE009D4A1F /* AppDelegate.swift in Sources */,
+				1895DAE22B75E2D3009D4A1F /* WriteDownInfoViewModel.swift in Sources */,
 				1895DA832B74BF8D009D4A1F /* IntroductionView.swift in Sources */,
-				1895DA742B74B750009D4A1F /* InterestingLinksApp.swift in Sources */,
+				1895DAE02B75DAD3009D4A1F /* WriteDownInfoView.swift in Sources */,
 				1895DA952B74E2EA009D4A1F /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +399,6 @@
 				DEVELOPMENT_TEAM = P5JPX93769;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -393,7 +432,6 @@
 				DEVELOPMENT_TEAM = P5JPX93769;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

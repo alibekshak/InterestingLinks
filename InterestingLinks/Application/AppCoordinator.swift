@@ -37,16 +37,65 @@ class AppCoordinator {
         let nc = UINavigationController(rootViewController: controller)
         nc.navigationBar.isTranslucent = false
         nc.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        nc.navigationBar.tintColor = UIColor.label
+        nc.navigationBar.tintColor = UIColor.white
         
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.shadowImage = UIImage()
+        navBarAppearance.shadowColor = .clear
+        navBarAppearance.backgroundColor = .black
+
+        //Configure additional customizations here
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
         return nc
     }
     
     private func addLinks() -> UIViewController {
         let viewModel = AddLinksViewModel()
-        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel))
+        let writeDownViewModel = WriteDownInfoViewModel()
+        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel, writeDownViewModel: writeDownViewModel).task{
+            do {
+                try await writeDownViewModel.load()
+            } catch {
+                print("\(error)")
+            }
+        })
+        
+        viewModel.onEvent = { [weak controller, weak self] event in
+            guard let self = self else { return }
+            switch event {
+            case .openSheet:
+                controller?.present(writeDownInfo(writeDownViewModel: writeDownViewModel), animated: true)
+            }
+        }
+        controller.modalPresentationStyle = .fullScreen
         
         return controller
     }
+    
+    private func writeDownInfo(writeDownViewModel: WriteDownInfoViewModel) -> UIViewController {
+//        let viewModel = WriteDownInfoViewModel()
+        let controller = UIHostingController(rootView: WriteDownInfoView(viewModel: writeDownViewModel))
+        
+//        viewModel.onEvent = { [weak controller, weak self] event in
+//            guard let self = self else { return }
+//            switch event {
+//            case .save:
+//                Task {
+//                    do {
+//                        try await viewModel.save(links: viewModel.links)
+//                    } catch {
+//                        print("\(error)")
+//                    }
+//                }
+//            }
+//        }
+        
+        controller.modalPresentationStyle = .formSheet
+        
+        return controller
+    }
+    
 }
 

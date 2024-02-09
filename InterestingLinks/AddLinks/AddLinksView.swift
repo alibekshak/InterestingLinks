@@ -11,36 +11,35 @@ struct AddLinksView: View {
     
     @StateObject var viewModel: AddLinksViewModel
     
+    @StateObject var writeDownViewModel: WriteDownInfoViewModel
+    
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Color(red: 242/255, green: 242/255, blue: 238/255)
-                
-                TitleView(width: geometry.size.width, height: geometry.size.height, title: "Links App")
-                
                 VStack {
-                    Spacer()
-                    TextAddLinksView()
-                    
-                    Spacer()
+                    Spacer(minLength: 20)
+                    List(writeDownViewModel.links) { link in
+                        ListOfLinksView(links: link)
+                    }
+                    .task {
+                        do {
+                            try await writeDownViewModel.load()
+                        } catch {
+                            print("\(error)")
+                        }
+                    }
+                    .listStyle(PlainListStyle())
                    
                     Button(action: {
-                        
+                        viewModel.onEvent?(.openSheet)
                     }) {
                         Text("Let’s start surfing the web")
                     }
                     .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
                     .padding(.bottom)
-                }
-                .padding(.bottom)
-                
-            }
-            .ignoresSafeArea()
-        }
+                }.background(Color(red: 242/255, green: 242/255, blue: 238/255))
     }
 }
 
 
 #Preview {
-    AddLinksView(viewModel: AddLinksViewModel())
+    AddLinksView(viewModel: AddLinksViewModel(), writeDownViewModel: WriteDownInfoViewModel())
 }

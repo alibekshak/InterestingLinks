@@ -8,5 +8,10 @@
 import Foundation
 
 class AddLinksViewModel: ObservableObject {
+    enum Event {
+        case openSheet
+    }
+    
+    var onEvent: ((Event) -> Void)?
     
 }
