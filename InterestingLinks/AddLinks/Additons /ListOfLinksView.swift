@@ -21,7 +21,7 @@ struct ListOfLinksView: View {
                 .frame(width: 24, height: 24)
         }
         .foregroundColor(.black)
-        .padding(.horizontal)
+        .padding()
         .onTapGesture {
             if let url = URL(string: links.link) {
                 UIApplication.shared.open(url)

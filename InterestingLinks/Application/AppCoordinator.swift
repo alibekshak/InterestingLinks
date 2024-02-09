@@ -80,8 +80,7 @@ class AppCoordinator {
     private func writeDownInfo(writeDownViewModel: WriteDownInfoViewModel) -> UIViewController {
         let controller = UIHostingController(rootView: WriteDownInfoView(viewModel: writeDownViewModel))
         
-        writeDownViewModel.onEvent = { [weak controller, weak self] event in
-            guard let self = self else { return }
+        writeDownViewModel.onEvent = { [weak controller] event in
             switch event {
             case .save:
                 Task {

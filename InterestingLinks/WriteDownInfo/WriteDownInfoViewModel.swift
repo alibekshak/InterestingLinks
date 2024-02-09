@@ -57,7 +57,6 @@ class WriteDownInfoViewModel: ObservableObject {
         }
         _ = try await task.value
     }
-
     
     func removeLink(at index: Int) {
         links.remove(at: index)
