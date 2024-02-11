@@ -10,7 +10,9 @@ import Foundation
 
 class WriteDownInfoViewModel: ObservableObject {
     enum Event {
+        case next
         case save
+        case openSheet
     }
     
     var onEvent: ((Event) -> Void)?
@@ -35,10 +37,13 @@ class WriteDownInfoViewModel: ObservableObject {
                 return []
             }
                 let dailyScrums = try JSONDecoder().decode([Links].self, from: data)
+                onEvent?(.next)
                 return dailyScrums
         }
+//
         let links = try await task.value
         self.links = links
+        
     }
     
     func save() async throws {
@@ -54,6 +59,7 @@ class WriteDownInfoViewModel: ObservableObject {
             let data = try JSONEncoder().encode(links)
             let outfile = try Self.fileURL()
             try data.write(to: outfile)
+            onEvent?(.save)
         }
         _ = try await task.value
     }
