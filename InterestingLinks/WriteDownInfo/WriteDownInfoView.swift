@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WriteDownInfoView: View {
     
-    @StateObject var viewModel: WriteDownInfoViewModel
+    @StateObject var viewModel: InterestingLinksViewModel
     
     var body: some View {
         VStack(spacing: 16) {
@@ -25,14 +25,19 @@ struct WriteDownInfoView: View {
             Spacer()
             
             Button(action: {
-                viewModel.onEvent?(.save)
+                Task {
+                    do {
+                        try await viewModel.save()
+                    } catch {
+                        print("\(error)")
+                    }
+                }
             }) {
                 Text("Save")
             }
             .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
         }
         .padding()
-        
     }
     
     var linkTitle: some View {
@@ -61,7 +66,7 @@ struct WriteDownInfoView: View {
 }
 
 #Preview {
-    WriteDownInfoView(viewModel: WriteDownInfoViewModel())
+    WriteDownInfoView(viewModel: InterestingLinksViewModel())
         .presentationDetents([.height(327), .medium, .large])
         .transition(.opacity)
 }

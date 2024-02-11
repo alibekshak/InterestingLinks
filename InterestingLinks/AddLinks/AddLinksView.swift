@@ -9,14 +9,12 @@ import SwiftUI
 
 struct AddLinksView: View {
     
-    @StateObject var viewModel: AddLinksViewModel
-    
-    @StateObject var writeDownViewModel: WriteDownInfoViewModel
+    @StateObject var viewModel: InterestingLinksViewModel
     
     var body: some View {
         VStack {
             Spacer(minLength: 20)
-            List(writeDownViewModel.links) { link in
+            List(viewModel.links) { link in
                 ListOfLinksView(links: link)
             }
             .listStyle(PlainListStyle())
@@ -29,11 +27,10 @@ struct AddLinksView: View {
             .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
             .padding(.bottom)
         }
-        
     }
 }
 
 
 #Preview {
-    AddLinksView(viewModel: AddLinksViewModel(), writeDownViewModel: WriteDownInfoViewModel())
+    AddLinksView(viewModel: InterestingLinksViewModel())
 }

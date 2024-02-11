@@ -9,7 +9,7 @@ import SwiftUI
 
 struct IntroductionView: View {
     
-    @StateObject var viewModel: IntroductionViewModel
+    @StateObject var viewModel: InterestingLinksViewModel
     
     var body: some View {
         ZStack {
@@ -24,7 +24,13 @@ struct IntroductionView: View {
                 TextIntraductionView()
                 
                 Button(action: {
-                    viewModel.onEvent?(.next)
+                    Task {
+                        do {
+                            try await viewModel.load()
+                        } catch {
+                            print("\(error)")
+                        }
+                    }
                 }) {
                     Text("Let’s start")
                 }
@@ -36,7 +42,7 @@ struct IntroductionView: View {
 }
 
 #Preview {
-    IntroductionView(viewModel: IntroductionViewModel())
+    IntroductionView(viewModel: InterestingLinksViewModel())
 }
 
 

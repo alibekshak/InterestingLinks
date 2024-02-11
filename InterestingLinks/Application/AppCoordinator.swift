@@ -23,14 +23,22 @@ class AppCoordinator {
     }
     
     private func intoductionScreen() -> UIViewController {
-        let viewModel = IntroductionViewModel()
+        let viewModel = InterestingLinksViewModel()
         let controller = UIHostingController(rootView: IntroductionView(viewModel: viewModel))
         
         viewModel.onEvent = {[weak controller, weak self] destination in
             guard let self else { return }
             switch destination {
             case .next:
-                controller?.navigationController?.pushViewController(addLinks(), animated: true)
+                DispatchQueue.main.async {
+                    controller?.navigationController?.pushViewController(self.addLinks(viewModel: viewModel), animated: true)
+                }
+            case .save:
+                DispatchQueue.main.async {
+                    controller?.dismiss(animated: true)
+                }
+            case .openSheet:
+                controller?.navigationController?.present(writeDownInofView(viewModel: viewModel), animated: true)
             }
         }
         
@@ -51,48 +59,16 @@ class AppCoordinator {
         return nc
     }
     
-    private func addLinks() -> UIViewController {
-        let viewModel = AddLinksViewModel()
-        let writeDownViewModel = WriteDownInfoViewModel()
-        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel, writeDownViewModel: writeDownViewModel))
-        
-        viewModel.onEvent = { [weak controller, weak self] event in
-            guard let self = self else { return }
-            switch event {
-            case .openSheet:
-                controller?.present(writeDownInfo(writeDownViewModel: writeDownViewModel), animated: true)
-            }
-        }
-        
-        Task {
-            do {
-                try await writeDownViewModel.load()
-            } catch {
-                print("\(error)")
-            }
-        }
+    private func addLinks(viewModel: InterestingLinksViewModel) -> UIViewController {
+        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel))
         
         controller.modalPresentationStyle = .fullScreen
         
         return controller
     }
     
-    private func writeDownInfo(writeDownViewModel: WriteDownInfoViewModel) -> UIViewController {
-        let controller = UIHostingController(rootView: WriteDownInfoView(viewModel: writeDownViewModel))
-        
-        writeDownViewModel.onEvent = { [weak controller] event in
-            switch event {
-            case .save:
-                Task {
-                    do {
-                        try await writeDownViewModel.save()
-                    } catch {
-                        print("\(error)")
-                    }
-                }
-                controller?.dismiss(animated: true)
-            }
-        }
+    private func writeDownInofView(viewModel: InterestingLinksViewModel) -> UIViewController {
+        let controller = UIHostingController(rootView: WriteDownInfoView(viewModel: viewModel))
         
         controller.modalPresentationStyle = .pageSheet
         
@@ -102,6 +78,5 @@ class AppCoordinator {
         
         return controller
     }
-    
 }
 
