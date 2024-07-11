@@ -19,6 +19,7 @@
 		1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAD82B75C8D2009D4A1F /* Links.swift */; };
 		1895DAE02B75DAD3009D4A1F /* WriteDownInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */; };
 		1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */; };
+		18AFCF172C3FA32200AC412C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFCF162C3FA32200AC412C /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		1895DAD82B75C8D2009D4A1F /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDownInfoView.swift; sourceTree = "<group>"; };
 		1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingLinksViewModel.swift; sourceTree = "<group>"; };
+		18AFCF162C3FA32200AC412C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */,
+				18AFCF162C3FA32200AC412C /* CustomTextField.swift */,
 			);
 			path = WriteDownInfo;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1895DA882B74CBB1009D4A1F /* TextIntraductionView.swift in Sources */,
+				18AFCF172C3FA32200AC412C /* CustomTextField.swift in Sources */,
 				1895DA8F2B74D930009D4A1F /* AppCoordinator.swift in Sources */,
 				1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */,
 				1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */,

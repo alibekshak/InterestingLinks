@@ -13,55 +13,31 @@ struct WriteDownInfoView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            
             Text("Save your links")
                 .font(.largeTitle)
                 .bold()
-            
+                .padding(.bottom, 38)
+            CustomTextField(title: "Link Title name", text: $viewModel.titleLink)
+            CustomTextField(title: "Link", text: $viewModel.link)
             Spacer()
-            linkTitle
-            
-            webLink
-            Spacer()
-            
-            Button(action: {
-                Task {
-                    do {
-                        try await viewModel.save()
-                    } catch {
-                        print("\(error)")
-                    }
-                }
-            }) {
-                Text("Save")
-            }
-            .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
+            buttonSave
         }
         .padding()
     }
     
-    var linkTitle: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .frame(height: 58)
-                .foregroundColor(.gray.opacity(0.2))
-            
-            TextField("Link Title name", text: $viewModel.titleLink)
-                .textFieldStyle(.plain)
-                .multilineTextAlignment(.center)
+    var buttonSave: some View {
+        Button(action: {
+            Task {
+                do {
+                    try await viewModel.save()
+                } catch {
+                    print("\(error)")
+                }
+            }
+        }) {
+            Text("Save")
         }
-    }
-    
-    var webLink: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .frame(height: 58)
-                .foregroundColor(.gray.opacity(0.2))
-            
-            TextField("Link", text: $viewModel.link)
-                .textFieldStyle(.plain)
-                .multilineTextAlignment(.center)
-        }
+        .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
     }
 }
 
