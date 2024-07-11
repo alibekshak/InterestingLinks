@@ -14,8 +14,12 @@ struct AddLinksView: View {
     var body: some View {
         VStack {
             Spacer(minLength: 20)
-            List(viewModel.links) { link in
-                ListOfLinksView(links: link)
+            List {
+                ForEach(viewModel.links) { link in
+                    ListOfLinksView(links: link)
+                }
+                .onDelete(perform: viewModel.removeLink)
+                .onMove(perform: viewModel.moveLink)
             }
             .listStyle(PlainListStyle())
             
@@ -27,6 +31,7 @@ struct AddLinksView: View {
             .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
             .padding(.bottom)
         }
+        .navigationBarItems(trailing: EditButton())
     }
 }
 

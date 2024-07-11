@@ -7,25 +7,27 @@
 
 import Foundation
 
+enum Event {
+    case next
+    case save
+    case openSheet
+}
+
 class InterestingLinksViewModel: ObservableObject {
-    enum Event {
-        case next
-        case save
-        case openSheet
-    }
-    
+
     var onEvent: ((Event) -> Void)?
     
-    var links: [Links] = []
-    
+    @Published var links: [Links] = []
     @Published var titleLink: String = ""
     @Published var link: String = ""
     
     private static func fileURL() throws -> URL {
-        try FileManager.default.url(for: .documentDirectory,
-                                    in: .userDomainMask,
-                                    appropriateFor: nil,
-                                    create: false)
+        try FileManager.default.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: false
+        )
         .appendingPathComponent("links.data")
     }
     
@@ -40,29 +42,50 @@ class InterestingLinksViewModel: ObservableObject {
                 onEvent?(.next)
                 return dailyScrums
         }
+        
         let links = try await task.value
-        self.links = links
+        DispatchQueue.main.async {
+            self.links = links
+        }
     }
     
     func save() async throws {
         guard !titleLink.isEmpty, !link.isEmpty else {
-
             return
         }
         
         let newLink = Links(name: titleLink, link: link)
-        links.append(newLink)
         
+        DispatchQueue.main.async {
+            self.links.append(newLink)
+        }
+        
+        Task {
+            try? await saveLinks()
+            onEvent?(.save)
+        }
+    }
+    
+    private func saveLinks() async throws {
         let task = Task {
-            let data = try JSONEncoder().encode(links)
+            let data = try JSONEncoder().encode(self.links)
             let outfile = try Self.fileURL()
             try data.write(to: outfile)
-            onEvent?(.save)
         }
         _ = try await task.value
     }
     
-    func removeLink(at index: Int) {
-        links.remove(at: index)
+    func removeLink(at offsets: IndexSet) {
+        links.remove(atOffsets: offsets)
+        Task {
+             try? await saveLinks()
+         }
+    }
+    
+    func moveLink(from source: IndexSet, to destination: Int) {
+        links.move(fromOffsets: source, toOffset: destination)
+        Task {
+             try? await saveLinks()
+         }
     }
 }
