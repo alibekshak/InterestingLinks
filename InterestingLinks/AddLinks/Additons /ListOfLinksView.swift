@@ -10,22 +10,33 @@ import SwiftUI
 struct ListOfLinksView: View {
     
     let links: Links
+    @State private var showingAlert = false
     
     var body: some View {
-        HStack {
-            Text(links.name)
-                .font(.title)
-            Spacer()
-            Image(systemName: "rectangle.portrait.and.arrow.right")
-                .resizable()
-                .frame(width: 24, height: 24)
-        }
-        .foregroundColor(.black)
-        .padding()
-        .onTapGesture {
-            if let url = URL(string: links.link) {
-                UIApplication.shared.open(url)
+        Button {
+            if let url = URL(string: links.link), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:]) { success in
+                    if !success {
+                        self.showingAlert = true
+                    }
+                }
+            } else {
+                self.showingAlert = true
             }
+        } label: {
+            HStack {
+                Text(links.name)
+                    .font(.title)
+                Spacer()
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+            }
+            .foregroundColor(.black)
+            .padding()
+        }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Некорректная ссылка"), dismissButton: .default(Text("Ок")))
         }
     }
 }
