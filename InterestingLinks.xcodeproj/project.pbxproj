@@ -19,6 +19,7 @@
 		1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAD82B75C8D2009D4A1F /* Links.swift */; };
 		1895DAE02B75DAD3009D4A1F /* WriteDownInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */; };
 		1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */; };
+		18AD4C652C47807A00777225 /* AnimatedVerticalBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */; };
 		18AFCF172C3FA32200AC412C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFCF162C3FA32200AC412C /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		1895DAD82B75C8D2009D4A1F /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDownInfoView.swift; sourceTree = "<group>"; };
 		1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingLinksViewModel.swift; sourceTree = "<group>"; };
+		18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedVerticalBars.swift; sourceTree = "<group>"; };
 		18AFCF162C3FA32200AC412C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				1895DAD52B75C881009D4A1F /* ListOfLinksView.swift */,
+				18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */,
 			);
 			path = "Additons ";
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */,
 				1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */,
 				1895DAD62B75C881009D4A1F /* ListOfLinksView.swift in Sources */,
+				18AD4C652C47807A00777225 /* AnimatedVerticalBars.swift in Sources */,
 				1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */,
 				1895DA922B74DF25009D4A1F /* AddLinksView.swift in Sources */,
 				1895DA8D2B74D8BE009D4A1F /* AppDelegate.swift in Sources */,

@@ -14,7 +14,7 @@ enum Event {
 }
 
 class InterestingLinksViewModel: ObservableObject {
-
+    
     var onEvent: ((Event) -> Void)?
     
     @Published var links: [Links] = []
@@ -38,9 +38,9 @@ class InterestingLinksViewModel: ObservableObject {
                 onEvent?(.next)
                 return []
             }
-                let dailyScrums = try JSONDecoder().decode([Links].self, from: data)
-                onEvent?(.next)
-                return dailyScrums
+            let dailyScrums = try JSONDecoder().decode([Links].self, from: data)
+            onEvent?(.next)
+            return dailyScrums
         }
         
         let links = try await task.value
@@ -56,13 +56,17 @@ class InterestingLinksViewModel: ObservableObject {
         
         let newLink = Links(name: titleLink, link: link)
         
-        DispatchQueue.main.async {
-            self.links.append(newLink)
+        await Task {
+            DispatchQueue.main.async {
+                self.links.append(newLink)
+            }
         }
         
-        Task {
-            try? await saveLinks()
-            onEvent?(.save)
+        try? await Task {
+            try await saveLinks()
+            DispatchQueue.main.async {
+                self.onEvent?(.save)
+            }
         }
     }
     
@@ -78,14 +82,14 @@ class InterestingLinksViewModel: ObservableObject {
     func removeLink(at offsets: IndexSet) {
         links.remove(atOffsets: offsets)
         Task {
-             try? await saveLinks()
-         }
+            try? await saveLinks()
+        }
     }
     
     func moveLink(from source: IndexSet, to destination: Int) {
         links.move(fromOffsets: source, toOffset: destination)
         Task {
-             try? await saveLinks()
-         }
+            try? await saveLinks()
+        }
     }
 }
