@@ -21,6 +21,9 @@ class InterestingLinksViewModel: ObservableObject {
     @Published var titleLink: String = ""
     @Published var link: String = ""
     
+    private let userDefaultsKey = "LinksKey"
+    let userDefaults = UserDefaults.standard
+    
     private static func fileURL() throws -> URL {
         try FileManager.default.url(
             for: .documentDirectory,
