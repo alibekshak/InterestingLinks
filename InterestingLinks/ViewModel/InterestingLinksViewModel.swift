@@ -34,6 +34,24 @@ class InterestingLinksViewModel: ObservableObject {
         .appendingPathComponent("links.data")
     }
     
+    private func saveLinks() {
+        guard let encodedData = try? JSONEncoder().encode(links) else {
+            return
+        }
+        
+        userDefaults.set(encodedData, forKey: userDefaultsKey)
+    }
+    
+    private func loadLinks() {
+        guard let savedData = userDefaults.data(forKey: userDefaultsKey),
+              let decodedLinks = try? JSONDecoder().decode([Links].self, from: savedData) else {
+            return
+        }
+        DispatchQueue.main.async {
+            self.links = decodedLinks
+        }
+    }
+    
     func load() async throws {
         let task = Task<[Links], Error> {
             let fileURL = try Self.fileURL()
