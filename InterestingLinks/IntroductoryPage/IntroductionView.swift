@@ -24,13 +24,7 @@ struct IntroductionView: View {
                 TextIntraductionView()
                 
                 Button(action: {
-                    Task {
-                        do {
-                            try await viewModel.load()
-                        } catch {
-                            print("\(error)")
-                        }
-                    }
+                    viewModel.loadLinksFromUserDefault()
                 }) {
                     Text("Let’s start")
                 }

@@ -21,75 +21,52 @@ class InterestingLinksViewModel: ObservableObject {
     @Published var titleLink: String = ""
     @Published var link: String = ""
     
-    private static func fileURL() throws -> URL {
-        try FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: false
-        )
-        .appendingPathComponent("links.data")
-    }
+    private let userDefaultsKey = "LinksKey"
+    let userDefaults = UserDefaults.standard
     
-    func load() async throws {
-        let task = Task<[Links], Error> {
-            let fileURL = try Self.fileURL()
-            guard let data = try? Data(contentsOf: fileURL) else {
-                onEvent?(.next)
-                return []
-            }
-            let dailyScrums = try JSONDecoder().decode([Links].self, from: data)
-            onEvent?(.next)
-            return dailyScrums
+    
+    private func saveLinksToUserDefault() {
+        guard let encodedData = try? JSONEncoder().encode(links) else {
+            return
         }
         
-        let links = try await task.value
+        userDefaults.set(encodedData, forKey: userDefaultsKey)
+    }
+    
+    func loadLinksFromUserDefault() {
+        guard let savedData = userDefaults.data(forKey: userDefaultsKey),
+              let decodedLinks = try? JSONDecoder().decode([Links].self, from: savedData) else {
+            self.onEvent?(.next)
+            return
+        }
+        
         DispatchQueue.main.async {
-            self.links = links
+            self.links = decodedLinks
+            self.onEvent?(.next)
         }
     }
     
-    func save() async throws {
+    func save() {
         guard !titleLink.isEmpty, !link.isEmpty else {
             return
         }
         
         let newLink = Links(name: titleLink, link: link)
         
-        await Task {
             DispatchQueue.main.async {
                 self.links.append(newLink)
-            }
-        }
-        
-        try? await Task {
-            try await saveLinks()
-            DispatchQueue.main.async {
+                self.saveLinksToUserDefault()
                 self.onEvent?(.save)
             }
-        }
-    }
-    
-    private func saveLinks() async throws {
-        let task = Task {
-            let data = try JSONEncoder().encode(self.links)
-            let outfile = try Self.fileURL()
-            try data.write(to: outfile)
-        }
-        _ = try await task.value
     }
     
     func removeLink(at offsets: IndexSet) {
         links.remove(atOffsets: offsets)
-        Task {
-            try? await saveLinks()
-        }
+        saveLinksToUserDefault()
     }
     
     func moveLink(from source: IndexSet, to destination: Int) {
         links.move(fromOffsets: source, toOffset: destination)
-        Task {
-            try? await saveLinks()
-        }
+        saveLinksToUserDefault()
     }
 }
