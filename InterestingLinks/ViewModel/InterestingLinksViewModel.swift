@@ -36,13 +36,11 @@ class InterestingLinksViewModel: ObservableObject {
     func loadLinksFromUserDefault() {
         guard let savedData = userDefaults.data(forKey: userDefaultsKey),
               let decodedLinks = try? JSONDecoder().decode([Links].self, from: savedData) else {
-            self.onEvent?(.next)
             return
         }
         
         DispatchQueue.main.async {
             self.links = decodedLinks
-            self.onEvent?(.next)
         }
     }
     

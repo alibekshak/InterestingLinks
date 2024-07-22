@@ -22,6 +22,9 @@ struct AddLinksView: View {
         }
         .padding(.top)
         .navigationBarItems(trailing: EditButton())
+        .onAppear {
+            viewModel.loadLinksFromUserDefault()
+        }
     }
     
     var textForWelcoming: some View {

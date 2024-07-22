@@ -24,7 +24,7 @@ struct IntroductionView: View {
                 TextIntraductionView()
                 
                 Button(action: {
-                    viewModel.loadLinksFromUserDefault()
+                    viewModel.onEvent?(.next)
                 }) {
                     Text("Let’s start")
                 }
