@@ -15,23 +15,37 @@ struct IntroductionView: View {
         ZStack {
             Image("fon")
                 .resizable()
-                .scaledToFill()
-                .clipped()
                 .ignoresSafeArea()
             
-            VStack(spacing: 25) {
+            VStack(alignment: .center, spacing: 24) {
                 Spacer()
-                TextIntraductionView()
-                
-                Button(action: {
-                    viewModel.onEvent?(.next)
-                }) {
-                    Text("Let’s start")
-                }
-                .buttonStyle(CustomButtonStyle(backgroundColor: .white, textColor: .black))
+                textInfo
+                buttonStart
             }
             .padding(.bottom)
         }
+    }
+    
+    var buttonStart: some View {
+        Button(action: {
+            viewModel.loadLinksFromUserDefault()
+            viewModel.onEvent?(.next)
+        }) {
+            Text("Let’s start")
+        }
+        .buttonStyle(CustomButtonStyle(backgroundColor: .white, textColor: .black))
+    }
+    
+    var textInfo: some View {
+        Text("Save all interesting links in one app")
+            .foregroundColor(.white)
+            .font(.system(
+                size: 36,
+                weight: .bold,
+                design: .rounded)
+            )
+            .multilineTextAlignment(.center)
+        
     }
 }
 
