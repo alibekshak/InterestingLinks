@@ -27,13 +27,7 @@ struct WriteDownInfoView: View {
     
     var buttonSave: some View {
         Button(action: {
-            Task {
-                do {
-                    try await viewModel.save()
-                } catch {
-                    print("\(error)")
-                }
-            }
+            viewModel.save()
         }) {
             Text("Save")
         }

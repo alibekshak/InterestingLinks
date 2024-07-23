@@ -14,12 +14,17 @@ struct CustomButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .frame(width: 360, height: 56)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(.vertical, 16)
             .background(
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(configuration.isPressed ? Color.gray : backgroundColor)
             )
             .foregroundColor(textColor)
-            .font(Font.custom("Helvetica", size: 16).weight(.semibold))
+            .font(.system(
+                size: 16,
+                weight: .semibold,
+                design: .rounded)
+            )
     }
 }

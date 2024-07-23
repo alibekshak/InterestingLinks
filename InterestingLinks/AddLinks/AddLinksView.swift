@@ -55,6 +55,7 @@ struct AddLinksView: View {
         }
         .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
         .padding(.bottom)
+        .padding(.horizontal, 16)
     }
 }
 

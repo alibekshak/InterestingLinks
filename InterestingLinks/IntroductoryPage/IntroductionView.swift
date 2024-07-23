@@ -34,6 +34,7 @@ struct IntroductionView: View {
             Text("Let’s start")
         }
         .buttonStyle(CustomButtonStyle(backgroundColor: .white, textColor: .black))
+        .padding(.horizontal, 16)
     }
     
     var textInfo: some View {
