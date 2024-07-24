@@ -22,12 +22,19 @@ struct AddLinksView: View {
         }
         .padding(.top)
         .navigationBarItems(trailing: EditButton())
+        .onAppear {
+            viewModel.loadLinksFromUserDefault()
+        }
     }
     
     var textForWelcoming: some View {
         VStack(alignment: .center, spacing: 20) {
             Text("Add your first link")
-                .font(.system(size: 28, weight: .semibold))
+                .font(.system(
+                    size: 28,
+                    weight: .semibold,
+                    design: .serif)
+                )
             AnimatedVerticalBars()
         }
         .frame(maxHeight: .infinity)
@@ -52,6 +59,7 @@ struct AddLinksView: View {
         }
         .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
         .padding(.bottom)
+        .padding(.horizontal, 16)
     }
 }
 

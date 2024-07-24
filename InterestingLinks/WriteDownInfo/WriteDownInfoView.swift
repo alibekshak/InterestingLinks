@@ -14,7 +14,11 @@ struct WriteDownInfoView: View {
     var body: some View {
         VStack(spacing: 16) {
             Text("Save your links")
-                .font(.largeTitle)
+                .font(.system(
+                    size: 32,
+                    weight: .semibold,
+                    design: .serif)
+                )
                 .bold()
                 .padding(.bottom, 38)
             CustomTextField(title: "Link Title name", text: $viewModel.titleLink)
@@ -27,13 +31,7 @@ struct WriteDownInfoView: View {
     
     var buttonSave: some View {
         Button(action: {
-            Task {
-                do {
-                    try await viewModel.save()
-                } catch {
-                    print("\(error)")
-                }
-            }
+            viewModel.save()
         }) {
             Text("Save")
         }
