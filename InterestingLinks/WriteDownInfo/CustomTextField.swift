@@ -22,6 +22,11 @@ struct CustomTextField: View {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(.gray.opacity(0.2))
             }
+            .font(.system(
+                size: 16,
+                weight: .regular,
+                design: .serif)
+            )
     }
 }
 

@@ -43,7 +43,7 @@ struct IntroductionView: View {
             .font(.system(
                 size: 36,
                 weight: .bold,
-                design: .rounded)
+                design: .serif)
             )
             .multilineTextAlignment(.center)
         

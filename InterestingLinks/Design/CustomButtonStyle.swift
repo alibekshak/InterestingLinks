@@ -22,9 +22,9 @@ struct CustomButtonStyle: ButtonStyle {
             )
             .foregroundColor(textColor)
             .font(.system(
-                size: 16,
+                size: 18,
                 weight: .semibold,
-                design: .rounded)
+                design: .serif)
             )
     }
 }

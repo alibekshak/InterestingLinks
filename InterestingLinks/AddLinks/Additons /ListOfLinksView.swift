@@ -26,7 +26,11 @@ struct ListOfLinksView: View {
         } label: {
             HStack {
                 Text(links.name)
-                    .font(.title)
+                    .font(.system(
+                        size: 22,
+                        weight: .semibold,
+                        design: .serif)
+                    )
                 Spacer()
                 Image(systemName: "rectangle.portrait.and.arrow.right")
                     .resizable()

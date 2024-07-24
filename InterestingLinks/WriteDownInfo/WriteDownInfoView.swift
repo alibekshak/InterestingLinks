@@ -14,7 +14,11 @@ struct WriteDownInfoView: View {
     var body: some View {
         VStack(spacing: 16) {
             Text("Save your links")
-                .font(.largeTitle)
+                .font(.system(
+                    size: 32,
+                    weight: .semibold,
+                    design: .serif)
+                )
                 .bold()
                 .padding(.bottom, 38)
             CustomTextField(title: "Link Title name", text: $viewModel.titleLink)
