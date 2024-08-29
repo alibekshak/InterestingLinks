@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WriteDownInfoView: View {
     
-    @StateObject var viewModel: InterestingLinksViewModel
+    @StateObject var viewModel: AddLinksViewModel
     
     var body: some View {
         VStack(spacing: 16) {
@@ -40,7 +40,7 @@ struct WriteDownInfoView: View {
 }
 
 #Preview {
-    WriteDownInfoView(viewModel: InterestingLinksViewModel())
+    WriteDownInfoView(viewModel: AddLinksViewModel())
         .presentationDetents([.height(327), .medium, .large])
         .transition(.opacity)
 }

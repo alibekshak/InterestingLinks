@@ -18,31 +18,74 @@ class AppCoordinator {
     }
     
     func start() {
-        self.rootController = intoductionScreen()
+        let viewModel = InterestingLinksViewModel()
+        let viewModelAddLinks = AddLinksViewModel()
+        let hasLinks = viewModel.loadLinksFromUserDefault()
+        
+        if hasLinks {
+            self.rootController = addLinks(viewModel: viewModelAddLinks)
+        } else {
+            self.rootController = introductionScreen(viewModel: viewModel, viewModelAddLinks: viewModelAddLinks)
+        }
+        
         window.rootViewController = rootController
     }
     
-    private func intoductionScreen() -> UIViewController {
-        let viewModel = InterestingLinksViewModel()
+    private func introductionScreen(viewModel: InterestingLinksViewModel, viewModelAddLinks: AddLinksViewModel) -> UIViewController {
         let controller = UIHostingController(rootView: IntroductionView(viewModel: viewModel))
         
         viewModel.onEvent = {[weak controller, weak self] destination in
-            guard let self else { return }
+            guard let self = self, let controller = controller else { return }
             switch destination {
             case .next:
                 DispatchQueue.main.async {
-                    controller?.navigationController?.pushViewController(self.addLinks(viewModel: viewModel), animated: true)
+                    controller.navigationController?.pushViewController(self.addLinks(viewModel: viewModelAddLinks), animated: true)
                 }
             case .save:
                 DispatchQueue.main.async {
-                    controller?.dismiss(animated: true)
+                    controller.dismiss(animated: true)
                 }
-            case .openSheet:
-                controller?.navigationController?.present(writeDownInofView(viewModel: viewModel), animated: true)
             }
         }
         
         let nc = UINavigationController(rootViewController: controller)
+        configureNavigationBar(nc)
+        return nc
+    }
+    
+    private func addLinks(viewModel: AddLinksViewModel) -> UIViewController {
+        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel))
+        viewModel.onEvent = {[weak controller, weak self] destination in
+            guard let self = self, let controller = controller else { return }
+            print("Событие вызвано: \(destination)")
+            switch destination {
+            case .openSheet:
+                DispatchQueue.main.async {
+                    let infoController = self.writeDownInfoView(viewModel: viewModel)
+                    controller.present(infoController, animated: true)
+                }
+            case .save:
+                DispatchQueue.main.async {
+                    controller.dismiss(animated: true)
+                }
+            }
+        }
+        
+        return controller
+    }
+    
+    private func writeDownInfoView(viewModel: AddLinksViewModel) -> UIViewController {
+        let controller = UIHostingController(rootView: WriteDownInfoView(viewModel: viewModel))
+        controller.modalPresentationStyle = .pageSheet
+        
+        if let sheet = controller.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
+        
+        return controller
+    }
+    
+    private func configureNavigationBar(_ nc: UINavigationController) {
         nc.navigationBar.isTranslucent = false
         nc.navigationBar.setBackgroundImage(UIImage(), for: .default)
         nc.navigationBar.tintColor = UIColor.white
@@ -53,30 +96,8 @@ class AppCoordinator {
         navBarAppearance.shadowColor = .clear
         navBarAppearance.backgroundColor = .black
         
-        //Configure additional customizations here
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
-        return nc
-    }
-    
-    private func addLinks(viewModel: InterestingLinksViewModel) -> UIViewController {
-        let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel))
-        
-        controller.modalPresentationStyle = .fullScreen
-        
-        return controller
-    }
-    
-    private func writeDownInofView(viewModel: InterestingLinksViewModel) -> UIViewController {
-        let controller = UIHostingController(rootView: WriteDownInfoView(viewModel: viewModel))
-        
-        controller.modalPresentationStyle = .pageSheet
-        
-        if let sheet = controller.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-        }
-        
-        return controller
     }
 }
 

@@ -1,20 +1,19 @@
 //
-//  InterestingLinksViewModel.swift
+//  AddLinksViewModel.swift
 //  InterestingLinks
 //
-//  Created by Alibek Shakirov on 11.02.2024.
+//  Created by Alibek Shakirov on 29.08.2024.
 //
 
 import Foundation
 
-enum Event {
-    case next
+enum EventAddLinks {
+    case openSheet
     case save
 }
 
-class InterestingLinksViewModel: ObservableObject {
-    
-    var onEvent: ((Event) -> Void)?
+class AddLinksViewModel: ObservableObject {
+    var onEvent: ((EventAddLinks) -> Void)?
     
     @Published var links: [Links] = []
     @Published var titleLink: String = ""
@@ -22,32 +21,7 @@ class InterestingLinksViewModel: ObservableObject {
     
     private let userDefaultsKey = "LinksKey1"
     let userDefaults = UserDefaults.standard
-    
-    init() {
-        loadLinksFromUserDefault()
-    }
-    
-    
-    private func saveLinksToUserDefault() {
-        guard let encodedData = try? JSONEncoder().encode(links) else {
-            return
-        }
-        
-        userDefaults.set(encodedData, forKey: userDefaultsKey)
-    }
-    
-    @discardableResult
-    func loadLinksFromUserDefault() -> Bool {
-        guard let savedData = userDefaults.data(forKey: userDefaultsKey),
-              let decodedLinks = try? JSONDecoder().decode([Links].self, from: savedData) else {
-            return false
-        }
-        
-        DispatchQueue.main.async {
-            self.links = decodedLinks
-        }
-        return true
-    }
+
     
     func save() {
         guard !titleLink.isEmpty, !link.isEmpty else {
@@ -63,6 +37,25 @@ class InterestingLinksViewModel: ObservableObject {
             }
     }
     
+    private func saveLinksToUserDefault() {
+        guard let encodedData = try? JSONEncoder().encode(links) else {
+            return
+        }
+        
+        userDefaults.set(encodedData, forKey: userDefaultsKey)
+    }
+    
+    func loadLinksFromUserDefault() {
+        guard let savedData = userDefaults.data(forKey: userDefaultsKey),
+              let decodedLinks = try? JSONDecoder().decode([Links].self, from: savedData) else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.links = decodedLinks
+        }
+    }
+    
     func removeLink(at offsets: IndexSet) {
         links.remove(atOffsets: offsets)
         saveLinksToUserDefault()
@@ -72,4 +65,5 @@ class InterestingLinksViewModel: ObservableObject {
         links.move(fromOffsets: source, toOffset: destination)
         saveLinksToUserDefault()
     }
+    
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddLinksView: View {
     
-    @StateObject var viewModel: InterestingLinksViewModel
+    @StateObject var viewModel: AddLinksViewModel
     
     var body: some View {
         VStack(alignment: .center) {
@@ -65,5 +65,5 @@ struct AddLinksView: View {
 
 
 #Preview {
-    AddLinksView(viewModel: InterestingLinksViewModel())
+    AddLinksView(viewModel: AddLinksViewModel())
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1856F50C2C8039CE00776C56 /* AddLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1856F50B2C8039CE00776C56 /* AddLinksViewModel.swift */; };
 		1895DA782B74B753009D4A1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895DA772B74B753009D4A1F /* Assets.xcassets */; };
 		1895DA7B2B74B753009D4A1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1895DA7A2B74B753009D4A1F /* Preview Assets.xcassets */; };
 		1895DA832B74BF8D009D4A1F /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA822B74BF8D009D4A1F /* IntroductionView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1856F50B2C8039CE00776C56 /* AddLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinksViewModel.swift; sourceTree = "<group>"; };
 		1895DA702B74B750009D4A1F /* InterestingLinks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InterestingLinks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1895DA772B74B753009D4A1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1895DA7A2B74B753009D4A1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */,
+				1856F50B2C8039CE00776C56 /* AddLinksViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				1895DA8F2B74D930009D4A1F /* AppCoordinator.swift in Sources */,
 				1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */,
 				1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */,
+				1856F50C2C8039CE00776C56 /* AddLinksViewModel.swift in Sources */,
 				1895DAD62B75C881009D4A1F /* ListOfLinksView.swift in Sources */,
 				18AD4C652C47807A00777225 /* AnimatedVerticalBars.swift in Sources */,
 				1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */,
