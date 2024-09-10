@@ -28,7 +28,6 @@ struct IntroductionView: View {
     
     var buttonStart: some View {
         Button(action: {
-            viewModel.loadLinksFromUserDefault()
             viewModel.onEvent?(.next)
         }) {
             Text("Let’s start")
