@@ -62,10 +62,6 @@ class AppCoordinator {
                 DispatchQueue.main.async {
                     controller.navigationController?.pushViewController(self.addLinks(viewModel: viewModelAddLinks), animated: true)
                 }
-            case .save:
-                DispatchQueue.main.async {
-                    controller.dismiss(animated: true)
-                }
             }
         }
         
