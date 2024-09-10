@@ -12,23 +12,44 @@ import SwiftUI
 class AppCoordinator {
     var rootController: UIViewController!
     var window: UIWindow
+    let setupGroup = DispatchGroup()
     
     init(window: UIWindow) {
         self.window = window
     }
     
     func start() {
-        let viewModel = InterestingLinksViewModel()
-        let viewModelAddLinks = AddLinksViewModel()
-        let hasLinks = viewModel.loadLinksFromUserDefault()
+        self.rootController = launchScreen()
+        window.rootViewController = rootController
+        window.makeKeyAndVisible()
         
-        if hasLinks {
-            self.rootController = addLinks(viewModel: viewModelAddLinks)
-        } else {
-            self.rootController = introductionScreen(viewModel: viewModel, viewModelAddLinks: viewModelAddLinks)
+        setupGroup.enter()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            
+            self.setupGroup.leave()
         }
         
-        window.rootViewController = rootController
+        setupGroup.notify(queue: .main) {
+            let viewModel = InterestingLinksViewModel()
+            let viewModelAddLinks = AddLinksViewModel()
+            let hasLinks = viewModel.loadLinksFromUserDefault()
+            
+            if hasLinks {
+                self.rootController = self.addLinks(viewModel: viewModelAddLinks)
+            } else {
+                self.rootController = self.introductionScreen(viewModel: viewModel, viewModelAddLinks: viewModelAddLinks)
+            }
+            
+            self.window.rootViewController = self.rootController
+            UIView.transition(with: self.window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+        }
+    }
+    
+    private func launchScreen() -> UIViewController {
+        let viewController = UIHostingController(rootView: LaunchScreen())
+        
+        return viewController
     }
     
     private func introductionScreen(viewModel: InterestingLinksViewModel, viewModelAddLinks: AddLinksViewModel) -> UIViewController {
