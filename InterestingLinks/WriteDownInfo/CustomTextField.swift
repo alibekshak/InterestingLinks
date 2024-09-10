@@ -13,20 +13,30 @@ struct CustomTextField: View {
     @Binding var text: String
     
     var body: some View {
-        TextField(title, text: $text)
-            .textFieldStyle(.plain)
-            .multilineTextAlignment(.leading)
-            .accentColor(.black)
-            .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundColor(.gray.opacity(0.2))
+        HStack(spacing: 12) {
+            TextField(title, text: $text)
+                .textFieldStyle(.plain)
+                .multilineTextAlignment(.leading)
+
+            if !text.isEmpty {
+                Button {
+                    self.text = ""
+                } label: {
+                     Image(systemName: "xmark")
+                }
             }
-            .font(.system(
-                size: 16,
-                weight: .regular,
-                design: .serif)
-            )
+        }
+        .accentColor(.black)
+        .padding()
+        .background {
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundColor(.gray.opacity(0.2))
+        }
+        .font(.system(
+            size: 16,
+            weight: .regular,
+            design: .serif)
+        )
     }
 }
 
