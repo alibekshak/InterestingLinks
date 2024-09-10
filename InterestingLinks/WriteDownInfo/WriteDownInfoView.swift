@@ -36,6 +36,7 @@ struct WriteDownInfoView: View {
             Text("Save")
         }
         .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
+        .disabled(viewModel.titleLink.isEmpty || viewModel.link.isEmpty)
     }
 }
 
