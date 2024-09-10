@@ -21,6 +21,7 @@
 		1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */; };
 		18AD4C652C47807A00777225 /* AnimatedVerticalBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */; };
 		18AFCF172C3FA32200AC412C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFCF162C3FA32200AC412C /* CustomTextField.swift */; };
+		18BE44052C90328800D66601 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BE44042C90328800D66601 /* LaunchScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingLinksViewModel.swift; sourceTree = "<group>"; };
 		18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedVerticalBars.swift; sourceTree = "<group>"; };
 		18AFCF162C3FA32200AC412C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		18BE44042C90328800D66601 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		1895DA722B74B750009D4A1F /* InterestingLinks */ = {
 			isa = PBXGroup;
 			children = (
+				18BE44032C90327400D66601 /* LaunchScreen */,
 				1895DAE32B792397009D4A1F /* ViewModel */,
 				1895DA8B2B74D896009D4A1F /* Application */,
 				1895DADD2B75D9F5009D4A1F /* WriteDownInfo */,
@@ -161,6 +164,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		18BE44032C90327400D66601 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				18BE44042C90328800D66601 /* LaunchScreen.swift */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -231,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BE44052C90328800D66601 /* LaunchScreen.swift in Sources */,
 				18AFCF172C3FA32200AC412C /* CustomTextField.swift in Sources */,
 				1895DA8F2B74D930009D4A1F /* AppCoordinator.swift in Sources */,
 				1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */,
