@@ -15,7 +15,7 @@
 		1895DA8F2B74D930009D4A1F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA8E2B74D930009D4A1F /* AppCoordinator.swift */; };
 		1895DA922B74DF25009D4A1F /* AddLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA912B74DF25009D4A1F /* AddLinksView.swift */; };
 		1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */; };
-		1895DAD62B75C881009D4A1F /* ListOfLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAD52B75C881009D4A1F /* ListOfLinksView.swift */; };
+		1895DAD62B75C881009D4A1F /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAD52B75C881009D4A1F /* LinkView.swift */; };
 		1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAD82B75C8D2009D4A1F /* Links.swift */; };
 		1895DAE02B75DAD3009D4A1F /* WriteDownInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */; };
 		1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */; };
@@ -34,7 +34,7 @@
 		1895DA8E2B74D930009D4A1F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1895DA912B74DF25009D4A1F /* AddLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLinksView.swift; sourceTree = "<group>"; };
 		1895DA972B74ECDC009D4A1F /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
-		1895DAD52B75C881009D4A1F /* ListOfLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfLinksView.swift; sourceTree = "<group>"; };
+		1895DAD52B75C881009D4A1F /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
 		1895DAD82B75C8D2009D4A1F /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		1895DADF2B75DAD3009D4A1F /* WriteDownInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDownInfoView.swift; sourceTree = "<group>"; };
 		1895DAE42B79246A009D4A1F /* InterestingLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestingLinksViewModel.swift; sourceTree = "<group>"; };
@@ -73,12 +73,9 @@
 		1895DA722B74B750009D4A1F /* InterestingLinks */ = {
 			isa = PBXGroup;
 			children = (
-				18BE44032C90327400D66601 /* LaunchScreen */,
+				18BE44062C91B2D000D66601 /* Views */,
 				1895DAE32B792397009D4A1F /* ViewModel */,
 				1895DA8B2B74D896009D4A1F /* Application */,
-				1895DADD2B75D9F5009D4A1F /* WriteDownInfo */,
-				1895DA812B74BD6E009D4A1F /* IntroductoryPage */,
-				1895DA902B74DEC8009D4A1F /* AddLinks */,
 				1895DA962B74ECB0009D4A1F /* Design */,
 				1895DAD72B75C8A7009D4A1F /* Model */,
 				1895DA772B74B753009D4A1F /* Assets.xcassets */,
@@ -124,7 +121,7 @@
 		1895DA932B74E2CE009D4A1F /* Additons  */ = {
 			isa = PBXGroup;
 			children = (
-				1895DAD52B75C881009D4A1F /* ListOfLinksView.swift */,
+				1895DAD52B75C881009D4A1F /* LinkView.swift */,
 				18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */,
 			);
 			path = "Additons ";
@@ -170,6 +167,17 @@
 				18BE44042C90328800D66601 /* LaunchScreen.swift */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		18BE44062C91B2D000D66601 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1895DA902B74DEC8009D4A1F /* AddLinks */,
+				1895DA812B74BD6E009D4A1F /* IntroductoryPage */,
+				1895DADD2B75D9F5009D4A1F /* WriteDownInfo */,
+				18BE44032C90327400D66601 /* LaunchScreen */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +256,7 @@
 				1895DAE52B79246A009D4A1F /* InterestingLinksViewModel.swift in Sources */,
 				1895DAD92B75C8D2009D4A1F /* Links.swift in Sources */,
 				1856F50C2C8039CE00776C56 /* AddLinksViewModel.swift in Sources */,
-				1895DAD62B75C881009D4A1F /* ListOfLinksView.swift in Sources */,
+				1895DAD62B75C881009D4A1F /* LinkView.swift in Sources */,
 				18AD4C652C47807A00777225 /* AnimatedVerticalBars.swift in Sources */,
 				1895DA982B74ECDC009D4A1F /* CustomButtonStyle.swift in Sources */,
 				1895DA922B74DF25009D4A1F /* AddLinksView.swift in Sources */,

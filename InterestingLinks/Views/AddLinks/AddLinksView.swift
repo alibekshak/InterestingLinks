@@ -39,7 +39,7 @@ struct AddLinksView: View {
                 weight: .bold,
                 design: .serif)
             )
-            
+            .padding(.leading)
             Spacer()
             
             Button {
@@ -76,7 +76,7 @@ struct AddLinksView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading,spacing: 12) {
                 ForEach(viewModel.links) { link in
-                    ListOfLinksView(viewModel: viewModel, deleteLink: $deleteLink, links: link)
+                    LinkView(viewModel: viewModel, deleteLink: $deleteLink, links: link)
                 }
             }
         }
