@@ -11,20 +11,52 @@ struct AddLinksView: View {
     
     @StateObject var viewModel: AddLinksViewModel
     
+    @State var deleteLink: Bool = false
+    
     var body: some View {
         VStack(alignment: .center) {
             if viewModel.links.isEmpty {
                 textForWelcoming
             } else {
+                navigationBar
                 listOfLinks
             }
             buttonAddLink
         }
-        .padding(.top)
-        .navigationBarItems(trailing: EditButton())
+        .padding(.horizontal, 16)
         .onAppear {
             viewModel.loadLinksFromUserDefault()
         }
+    }
+    
+    var navigationBar: some View {
+        HStack {
+            Spacer()
+            
+            Text("Your links")
+            .font(.system(
+                size: 30,
+                weight: .bold,
+                design: .serif)
+            )
+            
+            Spacer()
+            
+            Button {
+                withAnimation {
+                    deleteLink.toggle()
+                }
+            } label: {
+                Image(systemName: "square.and.pencil")
+                    .font(.system(
+                        size: 22,
+                        weight: .semibold,
+                        design: .serif)
+                    )
+                    .foregroundStyle(Color(.label))
+            }
+        }
+        .padding(.bottom, 20)
     }
     
     var textForWelcoming: some View {
@@ -41,14 +73,13 @@ struct AddLinksView: View {
     }
     
     var listOfLinks: some View {
-        List {
-            ForEach(viewModel.links) { link in
-                ListOfLinksView(links: link)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading,spacing: 12) {
+                ForEach(viewModel.links) { link in
+                    ListOfLinksView(viewModel: viewModel, deleteLink: $deleteLink, links: link)
+                }
             }
-            .onDelete(perform: viewModel.removeLink)
-            .onMove(perform: viewModel.moveLink)
         }
-        .listStyle(PlainListStyle())
     }
     
     var buttonAddLink: some View {
@@ -59,7 +90,6 @@ struct AddLinksView: View {
         }
         .buttonStyle(CustomButtonStyle(backgroundColor: .black, textColor: .white))
         .padding(.bottom)
-        .padding(.horizontal, 16)
     }
 }
 

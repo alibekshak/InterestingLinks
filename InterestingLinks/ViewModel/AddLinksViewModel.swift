@@ -56,14 +56,10 @@ class AddLinksViewModel: ObservableObject {
         }
     }
     
-    func removeLink(at offsets: IndexSet) {
-        links.remove(atOffsets: offsets)
-        saveLinksToUserDefault()
+    func removeLink(_ link: Links) {
+        if let index = links.firstIndex(where: { $0.id == link.id }) {
+            links.remove(at: index)
+            saveLinksToUserDefault()
+        }
     }
-    
-    func moveLink(from source: IndexSet, to destination: Int) {
-        links.move(fromOffsets: source, toOffset: destination)
-        saveLinksToUserDefault()
-    }
-    
 }
