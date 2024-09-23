@@ -61,7 +61,10 @@ class AddLinksViewModel: ObservableObject {
     func removeLink(_ link: Links) {
         if let index = links.firstIndex(where: { $0.id == link.id }) {
             links.remove(at: index)
-            saveLinksToUserDefault()
+            
+            DispatchQueue.main.async {
+                self.saveLinksToUserDefault()
+            }
         }
     }
     

@@ -13,8 +13,9 @@ struct LinkView: View {
     
     @Binding var deleteLink: Bool
     
-    let links: Links
+    @State var alertOnDelete: Bool = false
     
+    let links: Links
     
     var body: some View {
         Button {
@@ -25,6 +26,9 @@ struct LinkView: View {
                     Text(links.name)
                     Spacer()
                     Image(systemName: "rectangle.portrait.and.arrow.right")
+                        .alert(isPresented: $viewModel.showingAlert) {
+                            Alert(title: Text("Incorrect link"), dismissButton: .default(Text("Ok")))
+                        }
                     
                     if deleteLink {
                         deleteButton
@@ -41,24 +45,29 @@ struct LinkView: View {
                 Divider()
             }
         }
-        .alert(isPresented: $viewModel.showingAlert) {
-            Alert(title: Text("Некорректная ссылка"), dismissButton: .default(Text("Ок")))
-        }
-        
     }
     
     var deleteButton: some View {
         Button {
             withAnimation {
-                viewModel.removeLink(links)
-                viewModel.saveLinksToUserDefault()
-                deleteLink.toggle()
+                alertOnDelete.toggle()
             }
         } label: {
             Image(systemName: "trash.fill")
                 .foregroundStyle(Color(.red))
         }
+        .alert(isPresented: $alertOnDelete) {
+            Alert(
+                title: Text("Are you sure you want to delete the selected link ?"),
+                primaryButton: .destructive(Text("Delete")) {
+                    viewModel.removeLink(links)
+                    deleteLink.toggle()
+                },
+                secondaryButton: .cancel(Text("Cancel"))
+            )
+        }
     }
+    
 }
 
 #Preview {

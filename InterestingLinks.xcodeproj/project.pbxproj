@@ -122,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				1895DAD52B75C881009D4A1F /* LinkView.swift */,
-				18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */,
 			);
 			path = "Additons ";
 			sourceTree = "<group>";
@@ -172,12 +171,21 @@
 		18BE44062C91B2D000D66601 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				18FD186E2CA131EF00E4E1B6 /* ReusedViews */,
 				1895DA902B74DEC8009D4A1F /* AddLinks */,
 				1895DA812B74BD6E009D4A1F /* IntroductoryPage */,
 				1895DADD2B75D9F5009D4A1F /* WriteDownInfo */,
 				18BE44032C90327400D66601 /* LaunchScreen */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		18FD186E2CA131EF00E4E1B6 /* ReusedViews */ = {
+			isa = PBXGroup;
+			children = (
+				18AD4C642C47807A00777225 /* AnimatedVerticalBars.swift */,
+			);
+			path = ReusedViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
