@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum EventAddLinks {
     case openSheet
@@ -18,6 +19,7 @@ class AddLinksViewModel: ObservableObject {
     @Published var links: [Links] = []
     @Published var titleLink: String = ""
     @Published var link: String = ""
+    @Published var showingAlert = false
     
     private let userDefaultsKey = "LinksKey1"
     let userDefaults = UserDefaults.standard
@@ -37,7 +39,7 @@ class AddLinksViewModel: ObservableObject {
             }
     }
     
-    private func saveLinksToUserDefault() {
+    func saveLinksToUserDefault() {
         guard let encodedData = try? JSONEncoder().encode(links) else {
             return
         }
@@ -60,6 +62,19 @@ class AddLinksViewModel: ObservableObject {
         if let index = links.firstIndex(where: { $0.id == link.id }) {
             links.remove(at: index)
             saveLinksToUserDefault()
+        }
+    }
+    
+    
+    func checkLink(link: String) {
+        if let url = URL(string: link), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:]) { success in
+                if !success {
+                    self.showingAlert = true
+                }
+            }
+        } else {
+            self.showingAlert = true
         }
     }
 }

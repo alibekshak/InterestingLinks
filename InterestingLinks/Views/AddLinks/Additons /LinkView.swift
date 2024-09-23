@@ -15,26 +15,15 @@ struct LinkView: View {
     
     let links: Links
     
-    @State private var showingAlert = false
     
     var body: some View {
         Button {
-            if let url = URL(string: links.link), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:]) { success in
-                    if !success {
-                        self.showingAlert = true
-                    }
-                }
-            } else {
-                self.showingAlert = true
-            }
+            viewModel.checkLink(link: links.link)
         } label: {
             VStack(spacing: 12) {
                 HStack(spacing: 16) {
                     Text(links.name)
-                    
                     Spacer()
-                    
                     Image(systemName: "rectangle.portrait.and.arrow.right")
                     
                     if deleteLink {
@@ -52,15 +41,17 @@ struct LinkView: View {
                 Divider()
             }
         }
-        .alert(isPresented: $showingAlert) {
+        .alert(isPresented: $viewModel.showingAlert) {
             Alert(title: Text("Некорректная ссылка"), dismissButton: .default(Text("Ок")))
         }
+        
     }
     
     var deleteButton: some View {
         Button {
             withAnimation {
                 viewModel.removeLink(links)
+                viewModel.saveLinksToUserDefault()
                 deleteLink.toggle()
             }
         } label: {
