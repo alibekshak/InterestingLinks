@@ -26,7 +26,6 @@ class AppCoordinator {
         setupGroup.enter()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            
             self.setupGroup.leave()
         }
         
@@ -60,21 +59,27 @@ class AppCoordinator {
             switch destination {
             case .next:
                 DispatchQueue.main.async {
-                    controller.navigationController?.pushViewController(self.addLinks(viewModel: viewModelAddLinks), animated: true)
+                    self.replaceWithAddLinksScreen(viewModelAddLinks: viewModelAddLinks)
                 }
             }
         }
         
         let nc = UINavigationController(rootViewController: controller)
-        configureNavigationBar(nc)
         return nc
+    }
+    
+    private func replaceWithAddLinksScreen(viewModelAddLinks: AddLinksViewModel) {
+        let addLinksController = self.addLinks(viewModel: viewModelAddLinks)
+
+        self.window.rootViewController = addLinksController
+        
+        UIView.transition(with: self.window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
     }
     
     private func addLinks(viewModel: AddLinksViewModel) -> UIViewController {
         let controller = UIHostingController(rootView: AddLinksView(viewModel: viewModel))
         viewModel.onEvent = {[weak controller, weak self] destination in
             guard let self = self, let controller = controller else { return }
-            print("Событие вызвано: \(destination)")
             switch destination {
             case .openSheet:
                 DispatchQueue.main.async {
@@ -100,21 +105,6 @@ class AppCoordinator {
         }
         
         return controller
-    }
-    
-    private func configureNavigationBar(_ nc: UINavigationController) {
-        nc.navigationBar.isTranslucent = false
-        nc.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        nc.navigationBar.tintColor = UIColor.white
-        
-        let navBarAppearance = UINavigationBarAppearance()
-        navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.shadowImage = UIImage()
-        navBarAppearance.shadowColor = .clear
-        navBarAppearance.backgroundColor = .black
-        
-        UINavigationBar.appearance().standardAppearance = navBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
     }
 }
 
