@@ -17,12 +17,14 @@ struct IntroductionView: View {
                 .resizable()
                 .ignoresSafeArea()
             
-            VStack(alignment: .center, spacing: 24) {
+            AnimatedVerticalBars(introPage: true)
+            
+            VStack(alignment: .center, spacing: 54) {
                 Spacer()
                 textInfo
                 buttonStart
             }
-            .padding(.bottom)
+            .padding(.bottom, 34)
         }
     }
     

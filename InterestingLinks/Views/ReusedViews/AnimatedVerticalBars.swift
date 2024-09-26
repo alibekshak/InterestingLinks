@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AnimatedVerticalBars: View {
     
+    var introPage: Bool?
+    
     @State private var shouldAnimate = false
     
     private let heights: [CGFloat] = [50, 30, 50, 30, 50]
@@ -16,7 +18,7 @@ struct AnimatedVerticalBars: View {
     var body: some View {
         HStack(alignment: .center, spacing: shouldAnimate ? 15 : 5) {
             ForEach(Array(heights.enumerated()), id: \.offset) { index, height in
-                CapsuleView(height: height)
+                CapsuleView(height: height, introPage: introPage)
             }
         }
         .frame(width: shouldAnimate ? 150 : 100)
@@ -30,10 +32,16 @@ struct AnimatedVerticalBars: View {
 
 struct CapsuleView: View {
     var height: CGFloat
+    var introPage: Bool?
     
     var body: some View {
         Capsule(style: .continuous)
-            .fill(Color.black)
+            .fill(
+                introPage ?? false  ?
+                Color(.white)
+                :
+                Color.black
+            )
             .frame(width: 10, height: height)
     }
 }
