@@ -47,13 +47,18 @@ struct AddLinksView: View {
                     deleteLink.toggle()
                 }
             } label: {
-                Image(systemName: "square.and.pencil")
-                    .font(.system(
-                        size: 22,
-                        weight: .semibold,
-                        design: .serif)
-                    )
-                    .foregroundStyle(Color(.label))
+                Group {
+                    deleteLink ?
+                    AnyView(Text("Cancel"))
+                    :
+                    AnyView(Image(systemName: "square.and.pencil"))
+                }
+                .font(.system(
+                    size: 22,
+                    weight: .semibold,
+                    design: .serif)
+                )
+                .foregroundStyle(Color(.label))
             }
         }
         .padding(.bottom, 20)
